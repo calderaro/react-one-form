@@ -1,0 +1,44 @@
+
+.error {
+  color: red;
+}
+
+.input {
+  padding: 0;
+  label {
+    display: block;
+    padding: 0 0 .1em 0;
+  }
+  select, input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+    padding: 1em !important;
+    width: 100%;
+    font-size: 1em;
+    font-weight: lighter;
+    height: 2.2em;
+    border-radius: 5px;
+    outline: 0;
+    border: 1px solid #aaa;
+  }
+
+}
+
+.textarea {
+  display: block !important;
+  padding: 0;
+  label {
+    display: block;
+    padding: 0 0 .1em 0;
+  }
+  textarea {
+    display: block !important;
+    padding: 1em !important;
+    width: 100%;
+    font-size: 1em;
+    font-weight: lighter;
+    height: 2.2em;
+    border-radius: 5px;
+    outline: 0;
+    border: 1px solid #aaa;
+    height: 6em;
+  }
+}
