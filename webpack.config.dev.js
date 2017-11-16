@@ -1,6 +1,5 @@
 var path = require('path')
 var webpack = require('webpack')
-const api = process.env.api || 'http://consaraventura20170706063611.azurewebsites.net/'
 
 module.exports = {
   entry: [
@@ -17,10 +16,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development'),
-        'target': JSON.stringify('development'),
-        'targetenv': JSON.stringify('browser'),
-        'api': JSON.stringify(api)
+        'NODE_ENV': JSON.stringify('development')
       }
     })
   ],
