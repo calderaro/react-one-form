@@ -1,6 +1,5 @@
 var path = require('path')
 var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var rootPath = process.cwd()
 
 var client = {
@@ -14,7 +13,6 @@ var client = {
     publicPath: '/static/production/'
   },
   plugins: [
-    new ExtractTextPlugin({filename: 'style.css', allChunks: true}),
     new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}}),
     new webpack.DefinePlugin({
       'process.env': {
@@ -25,17 +23,16 @@ var client = {
   module: {
     rules: [
       { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
-      { test: /\.(css)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              query: {minimize: true, modules: true, importLoaders: 1, localIdentName: '[name]__[local]___[hash:base64:5]'}
-            },
-            'postcss-loader'
-          ]
-        })
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            query: {minimize: true, modules: true, importLoaders: 1, localIdentName: '[name]__[local]___[hash:base64:5]'}
+          },
+          'postcss-loader'
+        ]
       }
     ]
   }
