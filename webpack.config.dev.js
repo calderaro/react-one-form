@@ -5,12 +5,12 @@ module.exports = {
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    path.join(__dirname, './src/app.js')
+    path.join(__dirname, './src/examples/app.js')
   ],
   output: {
-    path: path.resolve('static'),
-    filename: 'main.js',
-    publicPath: '/static/development/'
+    path: path.resolve('lib'),
+    filename: 'reactOneInput.js',
+    publicPath: '/lib/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

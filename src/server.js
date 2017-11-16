@@ -16,7 +16,7 @@ const webpackConfig = require('../webpack.config.dev')
 const compiler = webpack(webpackConfig)
 
 app
-  .use('/dist', express.static(path.join(__dirname, '../dist')))
+  .use('/lib', express.static(path.join(__dirname, '../lib')))
   .use(webpackDevMiddleware(compiler, {publicPath: webpackConfig.output.publicPath}))
   .use(webpackHotMiddleware(compiler))
   .get('*', (req, res) => res.status(200).send(html()))
