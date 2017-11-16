@@ -1,28 +1,25 @@
-var path = require('path')
-var webpack = require('webpack')
-var rootPath = process.cwd()
+/* global __dirname, require, module*/
 
-var client = {
-  context: path.join(rootPath, 'src'),
-  name: 'client',
-  entry: './app.js',
+const webpack = require('webpack')
+const path = require('path')
+
+const config = {
+  entry: __dirname + '/src/index.js',
+  devtool: 'source-map',
   output: {
-    filename: '[name].js',
-    chunkFilename: '[id].chunk.js',
-    path: path.join(rootPath, 'dist'),
-    publicPath: '/static/production/'
+    path: __dirname + '/lib',
+    filename: 'reactOneForm.js',
+    library: 'reactOneForm',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}}),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
-  ],
   module: {
     rules: [
-      { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
+      {
+        test: /(\.jsx|\.js)$/,
+        loader: 'babel-loader',
+        exclude: /(node_modules|bower_components)/
+      },
       {
         test: /\.css$/,
         use: [
@@ -35,7 +32,22 @@ var client = {
         ]
       }
     ]
-  }
+  },
+  resolve: {
+    modules: [path.resolve('./node_modules'), path.resolve('./src')],
+    extensions: ['.json', '.js']
+  },
+  externals: {
+    react: 'react'
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}}),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ]
 }
 
-module.exports = client
+module.exports = config
