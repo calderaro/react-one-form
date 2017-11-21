@@ -1,6 +1,5 @@
 import React from 'react'
 import toPairs from 'lodash/fp/toPairs'
-import style from './style.css'
 
 const Input = props => {
   const {id, type, label, values, valuesName, store, change, options, className} = props
@@ -19,7 +18,7 @@ const Input = props => {
         onChange={change} >
         {getOptions(values || store[valuesName || (id + 'List')])}
       </select>
-      {err ? <div className={style.err}>{err.message}</div> : null}
+      {err ? <div>{err.message}</div> : null}
     </div>
 
   const checkbox = () =>
@@ -30,7 +29,7 @@ const Input = props => {
         id={id}
         checked={!!value}
         onChange={change} />
-      {err ? <div className={style.err}>{err.message}</div> : null}
+      {err ? <div>{err.message}</div> : null}
     </div>
 
   const radio = () =>
@@ -47,7 +46,7 @@ const Input = props => {
             onChange={change} />
         </div>
       ))}
-      {err ? <div className={style.err}>{err.message}</div> : null}
+      {err ? <div>{err.message}</div> : null}
     </div>
 
   const textarea = () =>
@@ -58,7 +57,7 @@ const Input = props => {
         name={id}
         value={value}
         onChange={change} />
-      {err ? <div className={style.err}>{err.message}</div> : null}
+      {err ? <div>{err.message}</div> : null}
     </div>
 
   const text = (type = 'text') =>
@@ -70,7 +69,7 @@ const Input = props => {
         name={id}
         value={value}
         onChange={change} />
-      {err ? <div className={style.err}>{err.message}</div> : null}
+      {err ? <div>{err.message}</div> : null}
     </div>
 
   if (type === 'checkbox') return checkbox()
