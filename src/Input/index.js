@@ -1,6 +1,5 @@
 import React from 'react'
 import toPairs from 'lodash/fp/toPairs'
-import style from './style.css'
 
 const Input = props => {
   const {id, type, label, values, valuesName, store, change, options} = props
@@ -50,20 +49,20 @@ const Input = props => {
       onChange={change} />
 
   const textarea = () =>
-    <div className={style.textarea}>
+    <div>
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
         name={id}
         value={value}
         onChange={change} />
-      {err ? <div className={style.err}>{err.message}</div> : null}
+      {err ? <div>{err.message}</div> : null}
     </div>
 
   if (type === 'textarea') return textarea()
 
   return (
-    <div className={type === 'checkbox' ? style.checkbox : style.input}>
+    <div>
       {label ? <label htmlFor={id}>{label}</label> : null}
       {(type === 'select' ? select
         : type === 'checkbox' ? checkbox
@@ -72,7 +71,7 @@ const Input = props => {
         : type === 'password' ? text
         : type === 'radio' ? radio
         : text)(type)}
-      {err ? <div className={style.err}>{err.message}</div> : null}
+      {err ? <div>{err.message}</div> : null}
     </div>
   )
 }
