@@ -4,10 +4,10 @@ const webpack = require('webpack')
 const path = require('path')
 
 const config = {
-  entry: __dirname + '/src/index.js',
+  entry: path.join(__dirname, '/src/index.js'),
   devtool: 'source-map',
   output: {
-    path: __dirname + '/lib',
+    path: path.join(__dirname, '/lib'),
     filename: 'reactOneForm.js',
     library: 'reactOneForm',
     libraryTarget: 'umd',
@@ -37,9 +37,6 @@ const config = {
     modules: [path.resolve('./node_modules'), path.resolve('./src')],
     extensions: ['.json', '.js']
   },
-  externals: {
-    react: 'react'
-  },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}}),
     new webpack.DefinePlugin({
@@ -47,6 +44,24 @@ const config = {
         'NODE_ENV': JSON.stringify('production')
       }
     })
+  ],
+  externals: [
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
+      }
+    },
+    {
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom'
+      }
+    }
   ]
 }
 
