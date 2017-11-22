@@ -2,7 +2,8 @@ import React from 'react'
 import toPairs from 'lodash/fp/toPairs'
 
 const Input = props => {
-  const {id, type, label, values, valuesName, store, change, options, style} = {style: {}, ...props}
+  const defaults = {style: {}, type: 'text'}
+  const {id, type, label, values, valuesName, store, change, options, style} = {...defaults, ...props}
   const value = store.data[id]
   const err = store.err && store.err.errors && store.err.errors[id] && store.err.errors[id]
   const getOptions = values => Array.isArray(values)
