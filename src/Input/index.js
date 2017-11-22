@@ -2,7 +2,7 @@ import React from 'react'
 import toPairs from 'lodash/fp/toPairs'
 
 const Input = props => {
-  const {id, type, label, values, valuesName, store, change, options, style} = props
+  const {id, type, label, values, valuesName, store, change, options, style} = {style: {}, ...props}
   const value = store.data[id]
   const err = store.err && store.err.errors && store.err.errors[id] && store.err.errors[id]
   const getOptions = values => Array.isArray(values)
@@ -10,7 +10,7 @@ const Input = props => {
     : toPairs(values).map((e, i) => <option key={i} value={e[0]}>{e[1]}</option>)
 
   const select = () =>
-    <div className={style[id]}>
+    <div className={style[id] || style[type]}>
       {label ? <label htmlFor={id}>{label}</label> : null}
       <select
         id={id}
@@ -22,7 +22,7 @@ const Input = props => {
     </div>
 
   const checkbox = () =>
-    <div className={style[id]}>
+    <div className={style[id] || style[type]}>
       {label ? <label htmlFor={id}>{label}</label> : null}
       <input
         type='checkbox'
@@ -33,7 +33,7 @@ const Input = props => {
     </div>
 
   const radio = () =>
-    <div className={style[id]}>
+    <div className={style[id] || style[type]}>
       {(options || store[valuesName || (id + 'Options')]).map((o, i) => (
         <div key={i}>
           <label htmlFor={id + i}>{o.label}</label>
@@ -50,7 +50,7 @@ const Input = props => {
     </div>
 
   const textarea = () =>
-    <div className={style[id]}>
+    <div className={style[id] || style[type]}>
       {label ? <label htmlFor={id}>{label}</label> : null}
       <textarea
         id={id}
@@ -61,7 +61,7 @@ const Input = props => {
     </div>
 
   const text = () =>
-    <div className={style[id]}>
+    <div className={style[id] || style[type]}>
       {label ? <label htmlFor={id}>{label}</label> : null}
       <input
         type={type || 'text'}

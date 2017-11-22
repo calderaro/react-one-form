@@ -1,6 +1,6 @@
 {
   "name": "react-one-form",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "React form and input helper components",
   "main": "lib/reactOneForm.js",
   "scripts": {
