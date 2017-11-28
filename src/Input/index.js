@@ -19,7 +19,7 @@ const Input = props => {
         onChange={change} >
         {getOptions(values || store[valuesName || (id + 'List')])}
       </select>
-      {err ? <div>{err.message}</div> : null}
+      {err ? <div>{err}</div> : null}
     </div>
 
   const checkbox = () =>
@@ -30,7 +30,7 @@ const Input = props => {
         id={id}
         checked={!!value}
         onChange={change} />
-      {err ? <div>{err.message}</div> : null}
+      {err ? <div>{err}</div> : null}
     </div>
 
   const radio = () =>
@@ -47,7 +47,7 @@ const Input = props => {
             onChange={change} />
         </div>
       ))}
-      {err ? <div>{err.message}</div> : null}
+      {err ? <div>{err}</div> : null}
     </div>
 
   const textarea = () =>
@@ -58,7 +58,7 @@ const Input = props => {
         name={id}
         value={value}
         onChange={change} />
-      {err ? <div>{err.message}</div> : null}
+      {err ? <div>{err}</div> : null}
     </div>
 
   const text = () =>
@@ -70,7 +70,7 @@ const Input = props => {
         name={id}
         value={value}
         onChange={change} />
-      {err ? <div>{err.message}</div> : null}
+      {err ? <div>{err}</div> : null}
     </div>
 
   if (type === 'checkbox') return checkbox()
