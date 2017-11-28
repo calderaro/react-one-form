@@ -5,7 +5,7 @@ const Input = props => {
   const defaults = {style: {}, type: 'text'}
   const {id, type, label, values, valuesName, store, change, options, style} = {...defaults, ...props}
   const value = store.data[id]
-  const err = store.err && store.err.errors && store.err.errors[id] && store.err.errors[id]
+  const err = store.err && store.err[id]
   const getOptions = values => Array.isArray(values)
     ? values.map((e, i) => <option key={i} value={e.value}>{e.label}</option>)
     : toPairs(values).map((e, i) => <option key={i} value={e[0]}>{e[1]}</option>)
