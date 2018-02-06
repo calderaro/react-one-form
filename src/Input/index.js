@@ -61,6 +61,20 @@ const Input = props => {
       {err ? <span>{err}</span> : null}
     </div>
 
+  const file = () =>
+    <div className={style[id] || style[type]}>
+      {label ? <label htmlFor={id}>{label}</label> : null}
+      <div>
+        {value.name ? value.name : [...value].map(v => v.name).join(', ')}
+      </div>
+      <input
+        type='file'
+        id={id}
+        name={id}
+        onChange={change} />
+      {err ? <span>{err}</span> : null}
+    </div>
+
   const text = () =>
     <div className={style[id] || style[type]}>
       {label ? <label htmlFor={id}>{label}</label> : null}
@@ -77,6 +91,7 @@ const Input = props => {
   if (type === 'radio') return radio()
   if (type === 'textarea') return textarea()
   if (type === 'select') return select()
+  if (type === 'file') return file()
   return text()
 }
 
