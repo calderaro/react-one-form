@@ -1,6 +1,8 @@
 import React from 'react'
 import toPairs from 'lodash/fp/toPairs'
 
+const isFileList = i => Object.prototype.toString.call(i) === '[object FileList]'
+
 const Input = props => {
   const defaults = {style: {}, type: 'text'}
   const {id, type, label, values, valuesName, store, change, options, style} = {...defaults, ...props}
@@ -65,7 +67,7 @@ const Input = props => {
     <div className={style[id] || style[type]}>
       {label ? <label htmlFor={id}>{label}</label> : null}
       <div>
-        {value.name ? value.name : [...value].map(v => v.name).join(', ')}
+        {isFileList(value) ? [...value].map(v => v.name).join(', ') : value.name ? value.name : value}
       </div>
       <input
         type='file'
