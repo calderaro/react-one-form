@@ -1,12 +1,15 @@
 import React from 'react'
 import toPairs from 'lodash/fp/toPairs'
+import get from 'lodash/fp/get'
 
 const isFileList = i => Object.prototype.toString.call(i) === '[object FileList]'
 
 const Input = props => {
   const defaults = {style: {}, type: 'text'}
-  const {id, type, label, value, values, valuesName, store, change, options, style} = {...defaults, ...props}
-  const val = value || store.data[id]
+  const sprops = {...defaults, ...props}
+  const {type, label, value, values, valuesName, store, change, options, style} = sprops
+  const id = sprops.id.split('.').pop()
+  const val = value || get(sprops.id, store.data)
   const err = store.err && store.err[id]
   const getOptions = values => Array.isArray(values)
     ? values.map((e, i) => <option key={i} value={e.value}>{e.label}</option>)
