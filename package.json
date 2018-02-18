@@ -73,6 +73,7 @@
     ]
   },
   "dependencies": {
-    "css-loader": "^0.28.7"
+    "css-loader": "^0.28.7",
+    "lodash": "^4.17.5"
   }
 }

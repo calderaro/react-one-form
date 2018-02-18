@@ -5,8 +5,8 @@ const isFileList = i => Object.prototype.toString.call(i) === '[object FileList]
 
 const Input = props => {
   const defaults = {style: {}, type: 'text'}
-  const {id, type, label, values, valuesName, store, change, options, style} = {...defaults, ...props}
-  const value = store.data[id]
+  const {id, type, label, value, values, valuesName, store, change, options, style} = {...defaults, ...props}
+  const val = value || store.data[id]
   const err = store.err && store.err[id]
   const getOptions = values => Array.isArray(values)
     ? values.map((e, i) => <option key={i} value={e.value}>{e.label}</option>)
@@ -17,7 +17,7 @@ const Input = props => {
       {label ? <label htmlFor={id}>{label}</label> : null}
       <select
         id={id}
-        value={value}
+        value={val}
         onChange={change} >
         {getOptions(values || store[valuesName || (id + 'List')])}
       </select>
@@ -30,7 +30,7 @@ const Input = props => {
       <input
         type='checkbox'
         id={id}
-        checked={!!value}
+        checked={!!val}
         onChange={change} />
       {err ? <span>{err}</span> : null}
     </div>
@@ -44,7 +44,7 @@ const Input = props => {
             type='radio'
             id={id + i}
             name={id}
-            checked={String(value) === String(o.value)}
+            checked={String(val) === String(o.value)}
             value={o.value}
             onChange={change} />
         </div>
@@ -58,7 +58,7 @@ const Input = props => {
       <textarea
         id={id}
         name={id}
-        value={value}
+        value={val}
         onChange={change} />
       {err ? <span>{err}</span> : null}
     </div>
@@ -67,7 +67,7 @@ const Input = props => {
     <div className={style[id] || style[type]}>
       {label ? <label htmlFor={id}>{label}</label> : null}
       <div>
-        {isFileList(value) ? [...value].map(v => v.name).join(', ') : value.name ? value.name : value}
+        {isFileList(val) ? [...val].map(v => v.name).join(', ') : val.name ? val.name : val}
       </div>
       <input
         type='file'
@@ -84,7 +84,7 @@ const Input = props => {
         type={type || 'text'}
         id={id}
         name={id}
-        value={value}
+        value={val}
         onChange={change} />
       {err ? <span>{err}</span> : null}
     </div>
