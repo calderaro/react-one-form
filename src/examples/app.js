@@ -12,16 +12,19 @@ const config = {
       password: 'asdasd',
       lol: {
         lel: 'xd'
+      },
+      address: {
+        lineOne: 'lineOne text'
       }
     }
   }
 }
 
-
 const Example = () => (
   <div>
     <Input {...{...config, id: 'name'}} />
     <Input {...{...config, id: 'lol.lel'}} />
+    <Input {...{...config, id: 'address.lineOne'}} />
     <Input {...{...config, id: 'password', type: 'password'}} />
     <Input {...{...config, id: 'lil', type: 'select'}} />
   </div>
