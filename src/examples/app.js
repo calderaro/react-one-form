@@ -4,7 +4,7 @@ import {Input} from '../index.js'
 
 const change = e => console.log(e.target.id, e.target.value)
 
-const config = {
+let config = {
   change,
   store: {
     data: {

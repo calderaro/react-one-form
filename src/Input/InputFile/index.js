@@ -12,7 +12,7 @@ export default class InputFile extends React.Component {
         <div>
           {isFileList(value) ? [...value].map(v => v.name).join(', ') : value.name ? value.name : value}
         </div>
-        <button onClick={this.open}>
+        <button type='button' onClick={this.open}>
           Seleccionar
         </button>
         <input
