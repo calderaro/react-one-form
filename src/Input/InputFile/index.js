@@ -10,11 +10,13 @@ export default class InputFile extends React.Component {
       <div className={style[id] || style[type]}>
         {label ? <label htmlFor={id}>{label}</label> : null}
         <div>
-          {isFileList(value) ? [...value].map(v => v.name).join(', ') : value.name ? value.name : value}
+          <div>
+            {isFileList(value) ? [...value].map(v => v.name).join(', ') : value.name ? value.name : value}
+          </div>
+          <button type='button' onClick={this.open}>
+            Seleccionar
+          </button>
         </div>
-        <button type='button' onClick={this.open}>
-          Seleccionar
-        </button>
         <input
           type='file'
           ref='input'
