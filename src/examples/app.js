@@ -15,7 +15,8 @@ const config = {
       },
       address: {
         lineOne: 'lineOne text'
-      }
+      },
+      img: ''
     }
   }
 }
@@ -27,6 +28,7 @@ const Example = () => (
     <Input {...{...config, id: 'address.lineOne'}} />
     <Input {...{...config, id: 'password', type: 'password'}} />
     <Input {...{...config, id: 'lil', type: 'select'}} />
+    <Input {...{...config, id: 'img', type: 'file'}} />
   </div>
 )
 
