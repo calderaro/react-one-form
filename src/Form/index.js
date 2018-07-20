@@ -22,7 +22,7 @@ const Form = ({model, title, list, state, actions, inputs}) => {
         <div>
           <button type='button' onclick={save}>
             {store.process
-              ? <i className='fa fa-circle-o-notch fa-spin' />
+              ? <div><i className='fa fa-circle-o-notch fa-spin' /></div>
               : 'Guardar'
             }
           </button>
