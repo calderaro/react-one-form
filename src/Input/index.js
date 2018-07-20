@@ -76,8 +76,8 @@ const Input = props => {
         name={id}
         value={val}
         onChange={change}
-        min={this.props.min}
-        max={this.props.max} />
+        min={props.min}
+        max={props.max} />
       {err ? <span>{err}</span> : null}
     </div>
 
